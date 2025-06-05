@@ -115,9 +115,9 @@ fn main() -> anyhow::Result<()> {
             loop {
                 match bme280.measure(&mut delay) {
                     Ok(measurements) => {
-                        log::info!("Temperature = {:.0}°C", measurements.temperature);
+                        log::info!("Temperature = {:.1}°C", measurements.temperature);
                         log::info!("Pressure = {:.0} Pa", measurements.pressure);
-                        log::info!("Relative Humidity = {:.0}%", measurements.humidity);
+                        log::info!("Relative Humidity = {:.1}%", measurements.humidity);
 
                         let mut data = m_bme280.lock().unwrap();
                         
