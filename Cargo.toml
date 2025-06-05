@@ -1,0 +1,37 @@
+[package]
+name = "esp32-playground"
+version = "0.1.0"
+authors = ["OTheNonE <olavnon@gmail.com>"]
+edition = "2021"
+resolver = "2"
+rust-version = "1.77"
+
+[patch.crates-io]
+esp-idf-sys = { git = "https://github.com/esp-rs/esp-idf-sys" }
+esp-idf-hal = { git = "https://github.com/esp-rs/esp-idf-hal" }
+
+[[bin]]
+name = "esp32-playground"
+harness = false # do not use the built in cargo test harness -> resolve rust-analyzer errors
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true    # Symbols are nice and they don't increase the size on Flash
+opt-level = "z"
+
+[features]
+default = []
+
+[dependencies]
+anyhow = "1.0.98"
+bme280 = "0.5.1"
+embedded-svc = "0.28.1"
+esp-idf-svc = { version = "0.51.0", features = []}
+log = "0.4.27"
+serde = "1.0.219"
+serde_json = "1.0.140"
+
+[build-dependencies]
+embuild = "0.33"
